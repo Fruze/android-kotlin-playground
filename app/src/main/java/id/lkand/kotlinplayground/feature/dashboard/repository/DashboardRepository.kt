@@ -9,28 +9,28 @@ import retrofit2.http.GET
 import retrofit2.Callback
 import retrofit2.Response
 
-interface mockAPI {
+interface IDashboardRepository {
     @GET("general")
     fun getGeneral(): Call<DashboardModel>
 }
 
-class DashboardRepository: Repository {
+class DashboardRepository : Repository {
 
-    fun start() {
-        val call = NetworkProvider()
-            .call<mockAPI>()
+    fun getGeneral() {
+        return NetworkProvider
+            .request<IDashboardRepository>()
             .getGeneral()
+            .enqueue(object : Callback<DashboardModel> {
+                override fun onResponse(call: Call<DashboardModel>, response: Response<DashboardModel>) {
+                    // TODO: Coroutines
+                    val KontakList = response.body().Content.Description
+                    Log.d("Retrofit Get", KontakList)
+                }
 
-        call.enqueue(object : Callback<DashboardModel> {
-            override fun onResponse(call: Call<DashboardModel>, response: Response<DashboardModel>) {
-                val KontakList = response.body().content.description
-                Log.d("Retrofit Get", KontakList)
-            }
-
-            override fun onFailure(call: Call<DashboardModel>, t: Throwable) {
-                Log.e("Retrofit Get", t.toString())
-            }
-        })
+                override fun onFailure(call: Call<DashboardModel>, t: Throwable) {
+                    Log.e(call.toString(), t.toString())
+                }
+            })
     }
 
 }

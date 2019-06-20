@@ -1,12 +1,22 @@
 package id.lkand.kotlinplayground.feature.dashboard.model
 
+import com.google.gson.annotations.SerializedName
+
 data class DashboardModel(
-    val code: String,
-    val content: DashboardContentModel
+    @SerializedName("code")
+    val Code: String,
+
+    @SerializedName("content")
+    val Content: DashboardContentModel
 )
 
 data class DashboardContentModel(
-    val status: Int,
-    val description: String,
-    val method: String
+    @SerializedName("status")
+    val Status: Int,
+
+    @SerializedName("description")
+    val Description: String,
+
+    @SerializedName("method")
+    val Method: String
 )

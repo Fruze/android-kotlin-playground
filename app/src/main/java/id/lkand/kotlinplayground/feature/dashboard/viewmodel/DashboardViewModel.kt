@@ -7,7 +7,7 @@ class DashboardViewModel {
     // TODO: Networking
     init {
         val repo = DashboardRepository()
-        repo.start()
+        repo.getGeneral()
     }
 
     // TODO: Modeling
