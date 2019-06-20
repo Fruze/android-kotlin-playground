@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kotlin Playground</string>
+    <string name="dashboard_hello">Hello Kotlin</string>
 </resources>
