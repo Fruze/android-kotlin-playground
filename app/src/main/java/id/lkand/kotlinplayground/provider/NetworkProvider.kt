@@ -1,5 +1,6 @@
 package id.lkand.kotlinplayground.provider
 
+import id.lkand.kotlinplayground.config.NetworkConfig.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,8 +10,6 @@ import java.util.concurrent.TimeUnit
 
 internal abstract class NetworkProvider {
     companion object {
-        const val BASE_URL = "https://dcc09323-5595-4e4e-b4ab-911cd88553cf.mock.pstmn.io"
-
         inline fun <reified T> request(logging: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE): T {
             val client = OkHttpClient.Builder()
                 .connectTimeout(3, TimeUnit.MINUTES)

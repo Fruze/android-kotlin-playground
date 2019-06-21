@@ -36,11 +36,10 @@ internal class DashboardActivity : AppCompatActivity() {
                 this.getTrigger,
                 this.postTrigger
             )
-        )
-            .observe(this, Observer {
-                this.binding.viewmodel = this.viewModel
-                this.binding.handler = this
-            })
+        ).observe(this, Observer {
+            this.binding.viewmodel = this.viewModel
+            this.binding.handler = this
+        })
     }
 
     fun handleTapGetButton() {
