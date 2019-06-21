@@ -24,15 +24,22 @@ android {
 dependencies {
     implementation deps.implementation.fileTree
     implementation deps.implementation.jetbrains.kotlin
+
     implementation deps.implementation.androidx.appCompat
     implementation deps.implementation.androidx.constraintLayout
+
     implementation deps.implementation.squareup.retrofit
     implementation deps.implementation.squareup.converterGson
+    implementation deps.implementation.squareup.adapterRxjava2
+    implementation deps.implementation.squareup.loggingInterceptor
+
+    implementation deps.implementation.reactivex.rxandroid
+    implementation deps.implementation.reactivex.rxkotlin
 
     testImplementation deps.testImplementation.junit
 
-    androidTestImplementation deps.androidTestImplementation.android.runner
-    androidTestImplementation deps.androidTestImplementation.android.espresso
+    androidTestImplementation deps.androidTestImplementation.androidx.runner
+    androidTestImplementation deps.androidTestImplementation.androidx.espresso
 }
 
 buildscript {
@@ -48,14 +55,20 @@ buildscript {
             ],
             squareup: [
                 'retrofit'          : 'com.squareup.retrofit2:retrofit:2.1.0',
-                'converterGson'    : 'com.squareup.retrofit2:converter-gson:2.1.0'
+                'converterGson'     : 'com.squareup.retrofit2:converter-gson:2.1.0',
+                'adapterRxjava2'    : 'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
+                'loggingInterceptor': 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+            ],
+            reactivex: [
+                'rxandroid'         : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+                'rxkotlin'          : 'io.reactivex.rxjava2:rxkotlin:2.3.0'
             ]
         ],
         testImplementation: [
             'junit'                 : 'junit:junit:4.12',
         ],
         androidTestImplementation: [
-            android: [
+            androidx: [
                 'runner'            : 'androidx.test:runner:1.1.0',
                 'espresso'          : 'androidx.test.espresso:espresso-core:3.1.0'
             ]

@@ -6,16 +6,17 @@ import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.feature.dashboard.viewmodel.DashboardViewModel
 
 class DashboardActivity : AppCompatActivity() {
-    val viewModel = DashboardViewModel()
+    private val viewModel = DashboardViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+
+        this.setContentView(R.layout.activity_dashboard)
+        this.bindView()
     }
 
-    // TODO: ViewModel
-    fun bindView() {
-
+    private fun bindView() {
+        this.viewModel.transform()
     }
 
     // TODO: DataBinding

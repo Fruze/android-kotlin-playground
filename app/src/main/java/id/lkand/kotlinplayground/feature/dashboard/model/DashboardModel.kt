@@ -2,7 +2,7 @@ package id.lkand.kotlinplayground.feature.dashboard.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DashboardModel(
+internal data class DashboardModel(
     @SerializedName("code")
     val Code: String,
 
@@ -10,7 +10,7 @@ data class DashboardModel(
     val Content: DashboardContentModel
 )
 
-data class DashboardContentModel(
+internal data class DashboardContentModel(
     @SerializedName("status")
     val Status: Int,
 
