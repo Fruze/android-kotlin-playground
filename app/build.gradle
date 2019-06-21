@@ -26,6 +26,7 @@ dependencies {
     implementation deps.implementation.jetbrains.kotlin
 
     implementation deps.implementation.androidx.appCompat
+    implementation deps.implementation.androidx.lifecycleExtension
     implementation deps.implementation.androidx.constraintLayout
 
     implementation deps.implementation.squareup.retrofit
@@ -52,6 +53,7 @@ buildscript {
             androidx: [
                 'appCompat'         : 'androidx.appcompat:appcompat:1.0.0',
                 'constraintLayout'  : 'androidx.constraintlayout:constraintlayout:1.1.3',
+                'lifecycleExtension': 'androidx.lifecycle:lifecycle-extensions:2.0.0'
             ],
             squareup: [
                 'retrofit'          : 'com.squareup.retrofit2:retrofit:2.1.0',

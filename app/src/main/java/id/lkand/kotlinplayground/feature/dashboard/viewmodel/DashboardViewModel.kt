@@ -1,6 +1,8 @@
 package id.lkand.kotlinplayground.feature.dashboard.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.feature.dashboard.api.DashboardTarget
 import id.lkand.kotlinplayground.feature.dashboard.model.DashboardModel
 import id.lkand.kotlinplayground.provider.NetworkProvider
@@ -8,7 +10,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-internal class DashboardViewModel {
+internal class DashboardViewModel: ViewModel() {
+
+    internal val dashboardModel = MutableLiveData<DashboardModel>()
 
     internal fun transform() {
         NetworkProvider.run {
@@ -17,7 +21,7 @@ internal class DashboardViewModel {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onNext = { response: DashboardModel ->
-                    Log.d("Retrofit success", response.Content.Method)
+                    this@DashboardViewModel.dashboardModel.value = response
                 }, onError = { error ->
                     Log.e("Retrofit error", error.message)
                 })
@@ -29,7 +33,7 @@ internal class DashboardViewModel {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onNext = { response ->
-                    Log.d("Retrofit success", response.Content.Method)
+                    // Stub
                 }, onError = { error ->
                     Log.e("Retrofit error", error.message)
                 })
