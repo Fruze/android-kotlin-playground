@@ -17,8 +17,8 @@ internal class DashboardActivity : AppCompatActivity() {
         ViewModelProviders.of(this).get(DashboardViewModel::class.java)
     }
 
-    private val getTrigger =  BehaviorSubject.create<Boolean>()
-    private val postTrigger =  BehaviorSubject.create<Boolean>()
+    private val getTrigger = BehaviorSubject.create<Boolean>()
+    private val postTrigger = BehaviorSubject.create<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,8 @@ internal class DashboardActivity : AppCompatActivity() {
                 didLoad,
                 this.getTrigger,
                 this.postTrigger
-            ))
+            )
+        )
             .observe(this, Observer {
                 this.binding.viewmodel = this.viewModel
                 this.binding.handler = this

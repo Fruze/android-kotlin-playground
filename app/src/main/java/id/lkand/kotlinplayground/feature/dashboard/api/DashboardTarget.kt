@@ -8,6 +8,7 @@ import retrofit2.http.POST
 internal interface DashboardTarget {
     @GET("general")
     fun getGeneral(): Observable<DashboardModel>
+
     @POST("general")
     fun postGeneral(): Observable<DashboardModel>
 }

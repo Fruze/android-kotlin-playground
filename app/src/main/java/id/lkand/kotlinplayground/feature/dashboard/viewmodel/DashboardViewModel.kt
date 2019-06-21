@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-internal class DashboardViewModel: ViewModel() {
+internal class DashboardViewModel : ViewModel() {
     val dashboardModel = MutableLiveData<DashboardModel>()
 
     internal data class Input(
