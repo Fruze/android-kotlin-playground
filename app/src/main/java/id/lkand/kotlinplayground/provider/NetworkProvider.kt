@@ -1,6 +1,6 @@
 package id.lkand.kotlinplayground.provider
 
-import id.lkand.kotlinplayground.config.NetworkConfig.Companion.BASE_URL
+import id.lkand.kotlinplayground.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +19,7 @@ internal abstract class NetworkProvider {
                 .build()
 
             val retrofit: Retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BuildConfig.URL_DEV)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)

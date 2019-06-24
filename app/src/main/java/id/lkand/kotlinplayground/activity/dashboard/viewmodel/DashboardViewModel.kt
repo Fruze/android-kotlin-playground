@@ -1,11 +1,11 @@
-package id.lkand.kotlinplayground.feature.dashboard.viewmodel
+package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.extension.subscribeIO
-import id.lkand.kotlinplayground.feature.dashboard.api.DashboardTarget
-import id.lkand.kotlinplayground.feature.dashboard.model.DashboardModel
+import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
+import id.lkand.kotlinplayground.activity.dashboard.model.DashboardModel
 import id.lkand.kotlinplayground.provider.NetworkProvider
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy

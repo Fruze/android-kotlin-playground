@@ -1,4 +1,4 @@
-package id.lkand.kotlinplayground.feature.dashboard.model
+package id.lkand.kotlinplayground.activity.dashboard.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -3,10 +3,10 @@
     <data>
         <variable
                 name="handler"
-                type="id.lkand.kotlinplayground.feature.dashboard.view.DashboardActivity"/>
+                type="id.lkand.kotlinplayground.activity.dashboard.view.DashboardActivity"/>
         <variable
                 name="viewmodel"
-                type="id.lkand.kotlinplayground.feature.dashboard.viewmodel.DashboardViewModel"/>
+                type="id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

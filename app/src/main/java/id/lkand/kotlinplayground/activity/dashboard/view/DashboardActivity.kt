@@ -1,4 +1,4 @@
-package id.lkand.kotlinplayground.feature.dashboard.view
+package id.lkand.kotlinplayground.activity.dashboard.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
-import id.lkand.kotlinplayground.feature.dashboard.viewmodel.DashboardViewModel
+import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
