@@ -48,10 +48,10 @@ internal class ApplicationModule {
             .addInterceptor(interceptor)
             .build()
     }
-//
+
 //    @Provides
 //    @Singleton
-//    inline fun <reified T> provideApiService(gson: Gson, okHttpClient: OkHttpClient): T {
+//    fun provideApiService(gson: Gson, okHttpClient: OkHttpClient): T {
 //        return Retrofit.Builder()
 //            .baseUrl(BuildConfig.URL_DEV)
 //            .addConverterFactory(GsonConverterFactory.create(gson))

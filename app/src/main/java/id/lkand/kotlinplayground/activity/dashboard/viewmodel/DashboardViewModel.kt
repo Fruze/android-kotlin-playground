@@ -1,6 +1,5 @@
 package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.extension.subscribeIO
@@ -8,9 +7,11 @@ import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
 import id.lkand.kotlinplayground.activity.dashboard.model.DashboardModel
 import id.lkand.kotlinplayground.provider.NetworkProvider
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
 internal class DashboardViewModel : ViewModel() {
+    private val compositeDisposable by lazy { CompositeDisposable() }
     val dashboardModel = MutableLiveData<DashboardModel>()
 
     internal data class Input(
@@ -19,9 +20,8 @@ internal class DashboardViewModel : ViewModel() {
         val postTrigger: Observable<Boolean>
     )
 
-    @SuppressLint("CheckResult")
     internal fun transform(input: Input): MutableLiveData<DashboardModel> {
-        Observable.merge(input.didLoad, input.getTrigger)
+        this.compositeDisposable.add(Observable.merge(input.didLoad, input.getTrigger)
             .subscribeIO()
             .subscribeBy {
                 NetworkProvider.request<DashboardTarget>().getGeneral()
@@ -29,9 +29,9 @@ internal class DashboardViewModel : ViewModel() {
                     .subscribeBy { response: DashboardModel ->
                         this@DashboardViewModel.dashboardModel.value = response
                     }
-            }
+            })
 
-        input.postTrigger
+        this.compositeDisposable.add(input.postTrigger
             .subscribeIO()
             .subscribeBy {
                 NetworkProvider.request<DashboardTarget>().postGeneral()
@@ -39,9 +39,16 @@ internal class DashboardViewModel : ViewModel() {
                     .subscribeBy { response: DashboardModel ->
                         this@DashboardViewModel.dashboardModel.value = response
                     }
-            }
+            })
 
         return this.dashboardModel
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+
+        this.compositeDisposable.clear()
+        this.compositeDisposable.dispose()
     }
 
 }
