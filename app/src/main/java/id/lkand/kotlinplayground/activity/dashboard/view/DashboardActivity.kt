@@ -1,21 +1,19 @@
 package id.lkand.kotlinplayground.activity.dashboard.view
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import dagger.android.support.DaggerAppCompatActivity
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
 import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import javax.inject.Inject
 
-internal class DashboardActivity : AppCompatActivity() {
+internal class DashboardActivity : DaggerAppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
-    private val viewModel: DashboardViewModel by lazy {
-        ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-    }
+    @Inject lateinit var viewModel: DashboardViewModel
 
     private val getTrigger = BehaviorSubject.create<Boolean>()
     private val postTrigger = BehaviorSubject.create<Boolean>()

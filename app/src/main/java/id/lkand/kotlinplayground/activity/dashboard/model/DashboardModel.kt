@@ -8,15 +8,16 @@ internal data class DashboardModel(
 
     @SerializedName("content")
     val Content: DashboardContentModel
-)
+) {
+    data class DashboardContentModel(
+        @SerializedName("status")
+        val Status: Int,
 
-internal data class DashboardContentModel(
-    @SerializedName("status")
-    val Status: Int,
+        @SerializedName("description")
+        val Description: String,
 
-    @SerializedName("description")
-    val Description: String,
+        @SerializedName("method")
+        val Method: String
+    )
+}
 
-    @SerializedName("method")
-    val Method: String
-)
