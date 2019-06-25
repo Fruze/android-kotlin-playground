@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
+import id.lkand.kotlinplayground.AndroidApplication
 import javax.inject.Singleton
 
 @Singleton

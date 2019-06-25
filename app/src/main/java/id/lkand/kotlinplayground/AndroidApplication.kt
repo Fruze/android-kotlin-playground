@@ -1,10 +1,11 @@
-package id.lkand.kotlinplayground.di
+package id.lkand.kotlinplayground
 
 import android.app.Activity
 import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import id.lkand.kotlinplayground.di.DaggerApplicationComponent
 import javax.inject.Inject
 
 internal class AndroidApplication: Application(), HasActivityInjector {

@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import id.lkand.kotlinplayground.BuildConfig
+import id.lkand.kotlinplayground.provider.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
@@ -22,6 +23,10 @@ import javax.inject.Singleton
 
 @Module
 internal class ApplicationModule {
+
+    @Provides
+    @Singleton
+    fun provideSchedulerProvider() = SchedulerProvider(Schedulers.io(), AndroidSchedulers.mainThread())
 
     @Provides
     @Singleton

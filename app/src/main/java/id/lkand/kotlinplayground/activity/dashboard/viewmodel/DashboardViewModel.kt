@@ -1,16 +1,17 @@
 package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.lkand.kotlinplayground.extension.subscribeIO
 import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
 import id.lkand.kotlinplayground.activity.dashboard.model.DashboardModel
 import id.lkand.kotlinplayground.provider.NetworkProvider
+import id.lkand.kotlinplayground.provider.SchedulerProvider
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
-internal class DashboardViewModel : ViewModel() {
+internal class DashboardViewModel(private val schedulerProvider: SchedulerProvider) : ViewModel() {
     private val compositeDisposable by lazy { CompositeDisposable() }
     val dashboardModel = MutableLiveData<DashboardModel>()
 
@@ -22,20 +23,20 @@ internal class DashboardViewModel : ViewModel() {
 
     internal fun transform(input: Input): MutableLiveData<DashboardModel> {
         this.compositeDisposable.add(Observable.merge(input.didLoad, input.getTrigger)
-            .subscribeIO()
+            .compose(this.schedulerProvider.getSchedulersForObservable())
             .subscribeBy {
                 NetworkProvider.request<DashboardTarget>().getGeneral()
-                    .subscribeIO()
+                    .compose(this.schedulerProvider.getSchedulersForSingle())
                     .subscribeBy { response: DashboardModel ->
                         this@DashboardViewModel.dashboardModel.value = response
                     }
             })
 
         this.compositeDisposable.add(input.postTrigger
-            .subscribeIO()
+            .compose(this.schedulerProvider.getSchedulersForObservable())
             .subscribeBy {
                 NetworkProvider.request<DashboardTarget>().postGeneral()
-                    .subscribeIO()
+                    .compose(this.schedulerProvider.getSchedulersForSingle())
                     .subscribeBy { response: DashboardModel ->
                         this@DashboardViewModel.dashboardModel.value = response
                     }
@@ -46,6 +47,8 @@ internal class DashboardViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+
+        Log.d("DebugUtil", "haha")
 
         this.compositeDisposable.clear()
         this.compositeDisposable.dispose()
