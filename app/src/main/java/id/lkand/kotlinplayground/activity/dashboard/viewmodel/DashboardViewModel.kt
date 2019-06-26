@@ -1,6 +1,5 @@
 package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
@@ -47,8 +46,6 @@ internal class DashboardViewModel(private val schedulerProvider: SchedulerProvid
 
     override fun onCleared() {
         super.onCleared()
-
-        Log.d("DebugUtil", "haha")
 
         this.compositeDisposable.clear()
         this.compositeDisposable.dispose()
