@@ -2,6 +2,7 @@ package id.lkand.kotlinplayground.activity.dashboard.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,9 +11,12 @@ import dagger.android.support.DaggerAppCompatActivity
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
 import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
+import id.lkand.kotlinplayground.activity.main.MainActivity
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.schedule
 
 internal class DashboardActivity : DaggerAppCompatActivity() {
     @Inject lateinit var vmFactory: ViewModelProvider.Factory
@@ -54,10 +58,11 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
         this.postTrigger.onNext(true)
     }
 
-    private fun handleNavigation() {
-        val explicit = Intent(this, DashboardActivity::class.java)
-        this.startActivity(explicit)
-        this.finish()
+    fun handleNavigateButton() {
+        Timer().schedule(500) {
+            val intent = Intent(this@DashboardActivity, DashboardActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

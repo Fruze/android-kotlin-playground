@@ -1,5 +1,6 @@
 package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
@@ -10,8 +11,11 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
-internal class DashboardViewModel(private val schedulerProvider: SchedulerProvider) : ViewModel() {
-    private val compositeDisposable by lazy { CompositeDisposable() }
+internal class DashboardViewModel(
+    private val schedulerProvider: SchedulerProvider,
+    private val compositeDisposable: CompositeDisposable
+) : ViewModel() {
+
     val dashboardModel = MutableLiveData<DashboardModel>()
 
     internal data class Input(
@@ -46,9 +50,7 @@ internal class DashboardViewModel(private val schedulerProvider: SchedulerProvid
 
     override fun onCleared() {
         super.onCleared()
-
         this.compositeDisposable.clear()
-        this.compositeDisposable.dispose()
     }
 
 }

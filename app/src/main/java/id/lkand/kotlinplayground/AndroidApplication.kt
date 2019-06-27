@@ -9,9 +9,7 @@ import id.lkand.kotlinplayground.di.DaggerApplicationComponent
 import javax.inject.Inject
 
 internal class AndroidApplication: Application(), HasActivityInjector {
-
-    @Inject
-    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    @Inject lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()

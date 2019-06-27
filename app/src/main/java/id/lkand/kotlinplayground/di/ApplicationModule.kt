@@ -9,6 +9,7 @@ import dagger.Provides
 import id.lkand.kotlinplayground.BuildConfig
 import id.lkand.kotlinplayground.provider.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -27,6 +28,10 @@ internal class ApplicationModule {
     @Provides
     @Singleton
     fun provideSchedulerProvider() = SchedulerProvider(Schedulers.io(), AndroidSchedulers.mainThread())
+
+    @Provides
+    @Singleton
+    fun provideCompositeDisposable() = CompositeDisposable()
 
     @Provides
     @Singleton
