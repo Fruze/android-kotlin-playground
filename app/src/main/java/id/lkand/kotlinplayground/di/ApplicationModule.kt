@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import id.lkand.kotlinplayground.BuildConfig
+import id.lkand.kotlinplayground.provider.NavigationProvider
 import id.lkand.kotlinplayground.provider.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,9 +14,6 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -35,6 +32,10 @@ internal class ApplicationModule {
 
     @Provides
     @Singleton
+    fun provideNavigationProvider() = NavigationProvider()
+
+    @Provides
+    @Singleton
     fun provideGson(): Gson {
         return GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create()
@@ -46,8 +47,8 @@ internal class ApplicationModule {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
 
-        val cacheDir = File(application.cacheDir, UUID.randomUUID().toString())
         // 10 MiB cache
+        val cacheDir = File(application.cacheDir, UUID.randomUUID().toString())
         val cache = Cache(cacheDir, 10 * 1024 * 1024)
 
         return OkHttpClient.Builder()

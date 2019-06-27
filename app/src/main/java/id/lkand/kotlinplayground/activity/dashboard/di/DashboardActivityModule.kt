@@ -13,13 +13,13 @@ internal class DashboardActivityModule {
 
     @Provides
     fun provideViewModel(
-            schedulerProvider: SchedulerProvider,
-            compositeDisposable: CompositeDisposable
-    ) =
-            DashboardViewModel(schedulerProvider, compositeDisposable)
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable
+    ) = DashboardViewModel(schedulerProvider, compositeDisposable)
 
     @Provides
     fun provideViewModelFactory(dashboardViewModel: DashboardViewModel): ViewModelProvider.Factory {
         return ViewModelFactoryProvider(dashboardViewModel)
     }
+
 }

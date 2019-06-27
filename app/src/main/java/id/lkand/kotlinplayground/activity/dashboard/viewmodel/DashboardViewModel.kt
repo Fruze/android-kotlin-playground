@@ -1,6 +1,5 @@
 package id.lkand.kotlinplayground.activity.dashboard.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.lkand.kotlinplayground.activity.dashboard.api.DashboardTarget
@@ -24,34 +23,33 @@ internal class DashboardViewModel(
         val postTrigger: Observable<Boolean>
     )
 
-    internal fun transform(input: Input): MutableLiveData<DashboardModel> {
+    internal fun transform(input: Input) {
         this.compositeDisposable.add(Observable.merge(input.didLoad, input.getTrigger)
             .compose(this.schedulerProvider.getSchedulersForObservable())
             .subscribeBy {
-                NetworkProvider.request<DashboardTarget>().getGeneral()
+                NetworkProvider.request<DashboardTarget>()
+                    .getGeneral()
                     .compose(this.schedulerProvider.getSchedulersForSingle())
                     .subscribeBy { response: DashboardModel ->
-                        this@DashboardViewModel.dashboardModel.value = response
+                        this.dashboardModel.value = response
                     }
             })
 
         this.compositeDisposable.add(input.postTrigger
             .compose(this.schedulerProvider.getSchedulersForObservable())
             .subscribeBy {
-                NetworkProvider.request<DashboardTarget>().postGeneral()
+                NetworkProvider.request<DashboardTarget>()
+                    .postGeneral()
                     .compose(this.schedulerProvider.getSchedulersForSingle())
                     .subscribeBy { response: DashboardModel ->
-                        this@DashboardViewModel.dashboardModel.value = response
+                        this.dashboardModel.value = response
                     }
             })
-
-        return this.dashboardModel
     }
 
     override fun onCleared() {
         super.onCleared()
         this.compositeDisposable.clear()
     }
-
 }
 

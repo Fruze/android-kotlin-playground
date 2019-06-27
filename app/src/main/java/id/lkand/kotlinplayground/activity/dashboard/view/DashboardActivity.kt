@@ -1,8 +1,6 @@
 package id.lkand.kotlinplayground.activity.dashboard.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,14 +9,15 @@ import dagger.android.support.DaggerAppCompatActivity
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
 import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
-import id.lkand.kotlinplayground.activity.main.MainActivity
+import id.lkand.kotlinplayground.provider.NavigationProvider
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import java.util.*
-import javax.inject.Inject
 import kotlin.concurrent.schedule
+import javax.inject.Inject
 
 internal class DashboardActivity : DaggerAppCompatActivity() {
+    @Inject lateinit var navigationProvider: NavigationProvider
     @Inject lateinit var vmFactory: ViewModelProvider.Factory
 
     private lateinit var binding: ActivityDashboardBinding
@@ -31,23 +30,31 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        this.setBinding()
         this.bindView()
     }
 
-    private fun bindView() {
-        val didLoad = Observable.just(true)
-
+    private fun setBinding() {
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
-        this.viewModel.transform(
-            DashboardViewModel.Input(
-                didLoad,
-                this.getTrigger,
-                this.postTrigger
-            )
-        ).observe(this, Observer {
+        this.viewModel.dashboardModel.observe(this, Observer {
             this.binding.viewmodel = this.viewModel
             this.binding.handler = this
         })
+    }
+
+    private fun bindView() {
+        Timer().schedule(1000) {
+            val didLoad = Observable.just(true)
+
+            this@DashboardActivity.viewModel.transform(
+                DashboardViewModel.Input(
+                    didLoad,
+                    this@DashboardActivity.getTrigger,
+                    this@DashboardActivity.postTrigger
+                )
+            )
+        }
     }
 
     fun handleTapGetButton() {
@@ -59,10 +66,8 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
     }
 
     fun handleNavigateButton() {
-        Timer().schedule(500) {
-            val intent = Intent(this@DashboardActivity, DashboardActivity::class.java)
-            startActivity(intent)
-        }
+        this.navigationProvider.navigate(this, DashboardActivity::class.java)
+        this.finish()
     }
 
 }
