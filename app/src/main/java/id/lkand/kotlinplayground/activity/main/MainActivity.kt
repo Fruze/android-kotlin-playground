@@ -1,7 +1,8 @@
-package id.lkand.kotlinplayground
+package id.lkand.kotlinplayground.activity.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import id.lkand.kotlinplayground.R
 
 class MainActivity : AppCompatActivity() {
 
