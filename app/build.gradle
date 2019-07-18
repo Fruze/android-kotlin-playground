@@ -54,4 +54,5 @@ dependencies {
 
     androidTestImplementation "androidx.test:runner:$version_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
+    implementation project(path: ':mylibrary')
 }
