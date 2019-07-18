@@ -9,6 +9,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
 import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
+import id.lkand.kotlinplayground.activity.main.MainActivity
 import id.lkand.kotlinplayground.provider.NavigationProvider
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
@@ -66,8 +67,12 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
     }
 
     fun handleNavigateButton() {
-        this.navigationProvider.navigate(this, DashboardActivity::class.java)
+        this.navigationProvider.navigate(this, MainActivity::class.java)
         this.finish()
+    }
+
+    fun handleAddButton() {
+
     }
 
 }
