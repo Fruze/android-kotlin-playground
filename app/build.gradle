@@ -33,29 +33,30 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':mylibrary')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
+    implementation project(path: ':owner')
+    implementation project(path: ':customer')
 
-    implementation "androidx.appcompat:appcompat:$version_appCompat"
-    implementation "androidx.constraintlayout:constraintlayout:$version_constraintLayout"
-    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifeCycle"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
-    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$version_retrofit"
-    implementation "com.squareup.okhttp3:logging-interceptor:$version_okHttp"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
-    implementation "io.reactivex.rxjava2:rxandroid:$version_rxAndroid"
-    implementation "io.reactivex.rxjava2:rxkotlin:$version_rxKotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
-    implementation "com.google.dagger:dagger:$version_dagger"
-    implementation "com.google.dagger:dagger-android:$version_dagger"
-    implementation "com.google.dagger:dagger-android-support:$version_dagger"
-    kapt "com.google.dagger:dagger-compiler:$version_dagger"
-    kapt "com.google.dagger:dagger-android-processor:$version_dagger"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
-    testImplementation "junit:junit:$version_jUnit"
+    testImplementation "junit:junit:$junit_version"
 
-    androidTestImplementation "androidx.test:runner:$version_runner"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
+    androidTestImplementation "androidx.test:runner:$runner_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }

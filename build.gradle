@@ -4,20 +4,21 @@ buildscript {
     ext {
         URL_DEV = "\"https://dcc09323-5595-4e4e-b4ab-911cd88553cf.mock.pstmn.io\""
 
-        version_kotlin = '1.3.41'
-        version_appCompat = '1.1.0-rc01'
-        version_constraintLayout = '2.0.0-beta2'
-        version_lifeCycle = '2.2.0-alpha02'
+        kotlin_version = '1.3.41'
+        core_version = '1.0.2'
+        appcompat_version = '1.1.0-rc01'
+        constraintlayout_version = '2.0.0-beta2'
+        lifecycle_version = '2.2.0-alpha02'
 
-        version_retrofit = '2.6.0'
-        version_okHttp = '4.0.1'
-        version_rxAndroid = '2.0.1'
-        version_rxKotlin = '2.3.0'
-        version_dagger = '2.23.2'
+        retrofit_version = '2.6.0'
+        okhttp_version = '4.0.1'
+        rxandroid_version = '2.0.1'
+        rxkotlin_version = '2.3.0'
+        dagger_version = '2.23.2'
 
-        version_jUnit = '4.13-beta-3'
-        version_runner = '1.3.0-alpha02'
-        version_espresso = '3.3.0-alpha02'
+        junit_version = '4.13-beta-3'
+        runner_version = '1.3.0-alpha02'
+        espresso_version = '3.3.0-alpha02'
     }
 
     repositories {
@@ -27,7 +28,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

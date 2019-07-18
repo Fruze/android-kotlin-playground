@@ -1,13 +1,13 @@
 package id.lkand.kotlinplayground.activity.dashboard.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.mylibrary.FirstLibraryClass
+import id.lkand.owner.OwnerActivity
 import dagger.android.support.DaggerAppCompatActivity
+import id.lkand.customer.CustomerActivity
 import id.lkand.kotlinplayground.R
 import id.lkand.kotlinplayground.databinding.ActivityDashboardBinding
 import id.lkand.kotlinplayground.activity.dashboard.viewmodel.DashboardViewModel
@@ -35,7 +35,6 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
 
         this.setBinding()
         this.bindView()
-        Log.d("DebugUtil", FirstLibraryClass().hello())
     }
 
     private fun setBinding() {
@@ -69,7 +68,8 @@ internal class DashboardActivity : DaggerAppCompatActivity() {
     }
 
     fun handleNavigateButton() {
-        this.navigationProvider.navigate(this, DashboardActivity::class.java)
+//        this.navigationProvider.navigate(this, DashboardActivity::class.java)
+        this.navigationProvider.navigate(this, CustomerActivity::class.java)
         this.finish()
     }
 
