@@ -8,6 +8,6 @@ class CustomerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        this.setContentView(R.layout.activity_user)
+        this.setContentView(R.layout.activity_customer)
     }
 }
