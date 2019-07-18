@@ -5,15 +5,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+
     defaultConfig {
         applicationId "id.lkand.kotlinplayground"
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
             buildConfigField("String", "URL_DEV", "$URL_DEV")
@@ -23,6 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     dataBinding {
         enabled = true
     }
@@ -30,6 +33,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':mylibrary')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
 
     implementation "androidx.appcompat:appcompat:$version_appCompat"
@@ -54,5 +58,4 @@ dependencies {
 
     androidTestImplementation "androidx.test:runner:$version_runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
-    implementation project(path: ':mylibrary')
 }

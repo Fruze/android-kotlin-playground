@@ -11,11 +11,17 @@ import java.util.concurrent.TimeUnit
 internal abstract class NetworkProvider {
     companion object {
         inline fun <reified T> request(logging: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE): T {
+            val interceptor = {
+                val interceptor = HttpLoggingInterceptor()
+                interceptor.level = logging
+                interceptor
+            }()
+
             val client = OkHttpClient.Builder()
                 .connectTimeout(3, TimeUnit.MINUTES)
                 .writeTimeout(3, TimeUnit.MINUTES)
                 .readTimeout(3, TimeUnit.MINUTES)
-                .addInterceptor(HttpLoggingInterceptor().setLevel(logging))
+                .addInterceptor(interceptor)
                 .build()
 
             val retrofit: Retrofit = Retrofit.Builder()
