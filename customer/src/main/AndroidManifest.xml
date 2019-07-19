@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name="id.lkand.customer.CustomerActivity"
-            android:theme="@style/PlaygroundTheme"
+            android:theme="@style/PlaygroundDialogTheme"
             android:windowNoTitle="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
