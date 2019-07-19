@@ -1,10 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.lkand.customer">
+    package="com.lkand.customer">
 
     <application>
-        <activity android:name="id.lkand.customer.CustomerActivity">
+        <activity
+            android:name="id.lkand.customer.CustomerActivity"
+            android:theme="@style/PlaygroundTheme"
+            android:windowNoTitle="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
     </application>

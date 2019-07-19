@@ -65,7 +65,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
@@ -74,7 +74,6 @@
             android:alpha="0.9"
             android:background="@drawable/dashboard_card"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dashboard_constraint_greeting">
 
@@ -118,10 +117,35 @@
                 android:onClick="@{() -> handler.handleNavigateButton()}"
                 android:padding="16dp"
                 android:text="Navigate"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dashboard_card_left_button" />
+
+            <Button
+                android:id="@+id/dashboard_card_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="@{() -> handler.handleOwnerButton()}"
+                android:padding="16dp"
+                android:text="Go to owner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_card_navigate" />
+
+            <Button
+                android:id="@+id/dashboard_card_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:onClick="@{() -> handler.handleCustomerButton()}"
+                android:padding="16dp"
+                android:text="Go to Customer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_card_owner" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

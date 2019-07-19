@@ -1,1 +1,1 @@
-include ':app', ':owner', ':customer'
+include ':app', ':owner', ':customer', ':assets'
