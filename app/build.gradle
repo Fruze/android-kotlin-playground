@@ -37,6 +37,8 @@ dependencies {
     implementation project(path: ':assets')
     implementation project(path: ':customer')
 
+    implementation 'com.android.support:design:29.0.0'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
