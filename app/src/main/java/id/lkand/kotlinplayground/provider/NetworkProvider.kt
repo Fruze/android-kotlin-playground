@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit
 
 internal abstract class NetworkProvider {
     companion object {
+        private var retrofit: Retrofit? = null
+
         inline fun <reified T> request(logging: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE): T {
             val interceptor = {
                 val interceptor = HttpLoggingInterceptor()
@@ -24,14 +26,14 @@ internal abstract class NetworkProvider {
                 .addInterceptor(interceptor)
                 .build()
 
-            val retrofit: Retrofit = Retrofit.Builder()
+            if(retrofit == null) retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.URL_DEV)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
                 .build()
 
-            return retrofit.create(T::class.java)
+            return retrofit!!.create(T::class.java)
         }
     }
 }
